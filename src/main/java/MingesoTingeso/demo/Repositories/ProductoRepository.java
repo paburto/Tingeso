@@ -11,4 +11,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long>{
 	Producto findProductoByCategoria(String categoria);
 	
 	Producto findProductoByNombreProducto(String nombreProducto);
+	
+	Producto deleteProductoById(Long id);
 }

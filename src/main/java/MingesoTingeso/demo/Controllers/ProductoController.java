@@ -1,6 +1,12 @@
 package MingesoTingeso.demo.Controllers;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,7 +48,84 @@ public class ProductoController {
 	
 	@PostMapping("/create")
     @ResponseBody
-    public Producto create(@RequestBody Producto resource) throws ParseException {
-        return productoRepository.save(resource);
+    public List<HashMap<String, String>> create(@RequestBody Map<String, Object> jsonData) throws ParseException {
+		List<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> map = new HashMap<>();
+		Producto producto = productoRepository.findProductoByCodigoProducto(Integer.parseInt(jsonData.get("codigo_producto").toString()));
+		if(producto == null) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			Date productDate = formatter.parse(jsonData.get("fecha_vencimiento").toString());
+			productoRepository.save(new Producto(jsonData.get("nombre_producto").toString(), 
+														jsonData.get("categoria").toString(),
+														productDate,
+														Integer.parseInt(jsonData.get("codigo_producto").toString()),
+														Integer.parseInt(jsonData.get("precio").toString())));
+			map.put("status", "201");
+			map.put("message", "OK");
+			map.put("item", jsonData.get("nombre_producto").toString());
+			result.add(map);
+			return result;
+		}
+		else {
+			map.put("status", "401");
+			map.put("message", "Product code already exist.");
+			map.put("item", producto.getNombreProducto());
+			result.add(map);
+			return result;
+		}
+    }
+	
+	@PostMapping("/update/{id}")
+    @ResponseBody
+    public List<HashMap<String, String>> update(@PathVariable Long id, @RequestBody Map<String, Object> jsonData) throws ParseException {
+		List<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> map = new HashMap<>();
+		Producto producto = productoRepository.findProductoById(id);
+		if(producto == null) {
+			map.put("status", "404");
+			map.put("message", "Product does not exist!.");
+			map.put("item", "");
+			result.add(map);
+			return result;
+		}
+		else {
+			producto.setCategoria(jsonData.get("categoria").toString());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			Date productDate = formatter.parse(jsonData.get("fecha_vencimiento").toString());
+			producto.setFechaVencimiento(productDate);
+			producto.setPrecio(Integer.parseInt(jsonData.get("precio").toString()));
+			producto.setNombreProducto(jsonData.get("nombre_producto").toString());
+			producto.setCodigoProducto(Integer.parseInt(jsonData.get("codigo_producto").toString()));
+			productoRepository.save(producto);
+			map.put("status", "200");
+			map.put("message", "OK");
+			map.put("item", producto.getNombreProducto());
+			result.add(map);
+			return result;
+		}
+    }
+	
+	@PostMapping("/delete/{id}")
+    @ResponseBody
+    public List<HashMap<String, String>> update(@PathVariable Long id) throws ParseException {
+		List<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> map = new HashMap<>();
+		Producto producto = productoRepository.findProductoById(id);
+		if(producto == null) {
+			map.put("status", "404");
+			map.put("message", "Product does not exist!.");
+			map.put("item", "");
+			result.add(map);
+			return result;
+		}
+		else {
+			String erasedProduct = producto.getNombreProducto();
+			productoRepository.deleteById(id);
+			map.put("status", "200");
+			map.put("message", "OK, product erased!.");
+			map.put("item", erasedProduct);
+			result.add(map);
+			return result;
+		}
     }
 }

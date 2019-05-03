@@ -1,7 +1,8 @@
 package MingesoTingeso.demo.Models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="producto")
+@Table(name="productos")
 public class Producto implements Serializable {
 	
 	@Id
@@ -18,20 +19,24 @@ public class Producto implements Serializable {
     @Column(name = "id")
     private Long id;
 	
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`nombreProducto`")
     private String nombreProducto;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`codigoProducto`")
     private int codigoProducto;
     
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`categoria`")
     private String categoria;
     
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`precio`")
     private int precio;
     
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`fechaVencimiento`")
     private Date fechaVencimiento;
+    
+    public Producto() {
+    	
+    }
     
     public Producto(String nombreProducto, String categoria, Date fechaVencimiento, int codigoProducto, int precio) {
         this.nombreProducto = nombreProducto;
