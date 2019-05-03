@@ -40,6 +40,12 @@ public class ProductoController {
         return productoRepository.findProductoById(id);
     }
 	
+	@RequestMapping(value = "/categoria", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Producto> getProductoByCategoria(@RequestBody Map<String, Object> jsonData) {
+        return productoRepository.findProductoByCategoria(jsonData.get("categoria").toString());
+    }
+	
 	@RequestMapping(value = "/codigo/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Producto getActorById(@PathVariable int codigoProducto) {
