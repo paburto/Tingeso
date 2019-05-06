@@ -21,37 +21,37 @@ import org.springframework.web.bind.annotation.RestController;
 import MingesoTingeso.demo.Models.Producto;
 import MingesoTingeso.demo.Repositories.ProductoRepository;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
 	@Autowired
 	ProductoRepository productoRepository;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Producto> getAllProductos() {
         return productoRepository.findAll();
     }
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Producto getProductoById(@PathVariable Long id) {
         return productoRepository.findProductoById(id);
     }
-	
+
 	@RequestMapping(value = "/categoria", method = RequestMethod.GET)
     @ResponseBody
     public List<Producto> getProductoByCategoria(@RequestBody Map<String, Object> jsonData) {
         return productoRepository.findProductoByCategoria(jsonData.get("categoria").toString());
     }
-	
+
 	@RequestMapping(value = "/codigo/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Producto getActorById(@PathVariable int codigoProducto) {
         return productoRepository.findProductoByCodigoProducto(codigoProducto);
     }
-	
+
 	@PostMapping("/create")
     @ResponseBody
     public List<HashMap<String, String>> create(@RequestBody Map<String, Object> jsonData) throws ParseException {
@@ -61,7 +61,7 @@ public class ProductoController {
 		if(producto == null) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 			Date productDate = formatter.parse(jsonData.get("fecha_vencimiento").toString());
-			productoRepository.save(new Producto(jsonData.get("nombre_producto").toString(), 
+			productoRepository.save(new Producto(jsonData.get("nombre_producto").toString(),
 														jsonData.get("categoria").toString(),
 														productDate,
 														Integer.parseInt(jsonData.get("codigo_producto").toString()),
@@ -80,7 +80,7 @@ public class ProductoController {
 			return result;
 		}
     }
-	
+
 	@PostMapping("/update/{id}")
     @ResponseBody
     public List<HashMap<String, String>> update(@PathVariable Long id, @RequestBody Map<String, Object> jsonData) throws ParseException {
@@ -110,7 +110,8 @@ public class ProductoController {
 			return result;
 		}
     }
-	
+
+	@CrossOrigin(origins = "*")
 	@PostMapping("/delete/{id}")
     @ResponseBody
     public List<HashMap<String, String>> update(@PathVariable Long id) throws ParseException {

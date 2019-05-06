@@ -4,6 +4,11 @@
       <h4 style="text-align:left; font-family:georgia"> <strong>Modificar Producto</strong></h4>
       <br>
       <div class="col">
+        <br>
+        <div class="row">
+           Id del producto: <input v-model="id" style="margin-left: 7%">
+         </div>
+         <br>
         <div class="row">
           <div>
             Nombre del producto: <input v-model="nombre_producto" style="margin-left: 20px">
@@ -41,12 +46,13 @@ import axios from 'axios';
 
 const localhost = 'http://localhost:8081';
 export default {
-  name : 'agregarProducto',
+  name : 'modificarProducto',
   props: ['postId'],
   components: {
   },
   data(){
     return{
+      id: '',
       nombre_producto:'',
       codigo_producto:'',
       categoria_producto:'',
@@ -57,24 +63,11 @@ export default {
     }
   },
   methods: {
-    getProductos(){
-      var url = localhost + '/productos';
-      axios.get(url).then((data) => {
-        this.productos = data.data;
-      });
-    },
     putProducto() {
       var url = localhost + '/productos/update/';
-      var id;
-      for(let i = 0;i < this.productos.length; i++){
-        if(this.productos[i].codigo_producto == this.codigo_producto){
-          id = this.productos[i].id;
-          console.log(id);
-        }
-      }
-      var idString = "" + id;
+      var idString = "" + this.id;
       url = url + idString;
-      axios.put(url, {
+      axios.post(url, {
         nombre_producto : this.nombre_producto,
         codigo_producto : this.codigo_producto,
         categoria: this.categoria_producto,
@@ -82,19 +75,18 @@ export default {
         precio: this.precio_producto
       })
       .then(response => {
+        this.id = "";
         this.nombre_producto = "";
         this.codigo_producto = "";
         this.categoria_producto = "";
         this.fecha_vencimiento = "";
         this.precio_producto = "";
+        alert("El producto ha sido modificado exitosamente.");
       })
       .catch(e => {
         this.errors.push(e)
       })
     },
   },
-  mounted() {
-    this.getProductos();
-  }
 }
 </script>

@@ -102,7 +102,6 @@ export default {
         }
       }
       for(let i = 0; i < this.productos.length; i++){
-
         if(this.productos[i].categoria == categoria.nombreCategoria){
 
           this.productos_filtrados.push(this.productos[i]);
