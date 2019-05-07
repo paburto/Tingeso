@@ -48,7 +48,7 @@ public class ProductoController {
 
 	@RequestMapping(value = "/codigo/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Producto getActorById(@PathVariable int codigoProducto) {
+    public Producto getProductoByCodigoProducto(@PathVariable int codigoProducto) {
         return productoRepository.findProductoByCodigoProducto(codigoProducto);
     }
 
