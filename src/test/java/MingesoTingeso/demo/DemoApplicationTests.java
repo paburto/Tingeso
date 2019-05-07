@@ -16,9 +16,9 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testConcatenate() {
-		MyUnit myUnit = new MyUnit();
+		Producto Producto = new Producto();
 
-		String result = myUnit.concatenate("one", "two");
+		String result = Producto.concatenate("one", "two");
 
 		assertEquals("onetwo", result);
 
