@@ -94,7 +94,4 @@ public class Producto implements Serializable {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public String concatenate(String one, String two){
-		return one + two;
-	}
 }
