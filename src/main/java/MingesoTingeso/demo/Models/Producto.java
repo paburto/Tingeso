@@ -93,4 +93,5 @@ public class Producto implements Serializable {
 	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
+
 }
