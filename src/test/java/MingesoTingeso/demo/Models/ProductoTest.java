@@ -10,6 +10,6 @@ public class ProductoTest {
     public void getId() {
         Producto p= new Producto();
         p.setPrecio(10000);
-        assertEquals(10002, p.getPrecio());
+        assertEquals(10000, p.getPrecio());
     }
 }
