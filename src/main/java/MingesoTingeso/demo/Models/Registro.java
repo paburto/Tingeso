@@ -41,11 +41,11 @@ public class Registro implements Serializable {
 		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 		private Habitacion habitacion;
 
-    @ManyToMany(mappedBy="registrosCliente")
-    private Set<Cliente> clientesRegistros;
+    @ManyToMany(mappedBy="registros")
+    private Set<Cliente> clientes;
 
-    @ManyToMany(mappedBy="registrosServicio")
-    private Set<Servicio> serviciosRegistro;
+    @ManyToMany(mappedBy="registros")
+    private Set<Servicio> servicios;
 
     public Registro() {
 

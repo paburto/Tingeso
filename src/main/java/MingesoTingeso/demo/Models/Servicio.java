@@ -36,7 +36,7 @@ public class Servicio implements Serializable {
     private int precio_servicio;
 
     @ManyToMany
-    private Set<Registro> registrosServicio;
+    private Set<Registro> registros;
 
     public Servicio() {
 
