@@ -10,34 +10,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.*;
+
+
 @Entity
 @Table(name="productos")
 public class Producto implements Serializable {
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-	
+
     @Column(nullable = false, name = "`nombreProducto`")
     private String nombreProducto;
 
     @Column(nullable = false, name = "`codigoProducto`")
     private int codigoProducto;
-    
+
     @Column(nullable = false, name = "`categoria`")
     private String categoria;
-    
+
     @Column(nullable = false, name = "`precio`")
     private int precio;
-    
+
     @Column(nullable = false, name = "`fechaVencimiento`")
     private Date fechaVencimiento;
-    
+
     public Producto() {
-    	
+
     }
-    
+
     public Producto(String nombreProducto, String categoria, Date fechaVencimiento, int codigoProducto, int precio) {
         this.nombreProducto = nombreProducto;
         this.categoria = categoria;
