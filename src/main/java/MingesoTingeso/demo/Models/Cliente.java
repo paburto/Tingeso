@@ -23,22 +23,26 @@ import java.util.*;
 public class Cliente implements Serializable {
 
 	@Id
-    @Column(nullable = false, name = "rut")
-    private Long rut;
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "idCliente")
+		private Long idCliente;
 
-    @Column(nullable = false, name = "nombreCliente")
+    @Column(nullable = false, name = "`rut`")
+    private int rut;
+
+    @Column(nullable = false, name = "`nombreCliente`")
     private String nombreCliente;
 
 
-    @Column(nullable = false, name = "telefono")
+    @Column(nullable = false, name = "`telefono`")
     private int telefono;
 
 
-    @Column(nullable = false, name = "fechaNacimiento")
+    @Column(nullable = false, name = "`fechaNacimiento`")
     private Date fechaNacimiento;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "rut")
+    @JoinColumn(name = "idCliente")
     @JsonIgnore
     private List<Reserva> reservas;
 
@@ -49,17 +53,26 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente( String nombreCliente, int telefono ,Date fechaNacimiento) {
+    public Cliente( int rut, String nombreCliente, int telefono ,Date fechaNacimiento) {
+			this.rut = rut;
         this.nombreCliente = nombreCliente;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
     }
 
-	public Long getRut() {
+		public Long getIdCliente() {
+			return idCliente;
+		}
+
+		public void setIdCliente(Long idCliente) {
+			this.idCliente = idCliente;
+		}
+
+	public int getRut() {
 		return rut;
 	}
 
-	public void setRut(Long rut) {
+	public void setRut(int rut) {
 		this.rut = rut;
 	}
 

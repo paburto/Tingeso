@@ -22,14 +22,14 @@ public class Historial implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_historial")
-    private Long id_historial;
+    @Column(name = "idHis")
+    private Long idHis;
 
-    @Column(nullable = false, name = "descripcion")
+    @Column(nullable = false, name = "`descripcion`")
     private String descripcion;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "idUser")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
@@ -42,11 +42,11 @@ public class Historial implements Serializable {
     }
 
 	public Long getIdHistorial() {
-		return id_historial;
+		return idHis;
 	}
 
-	public void setIdHistorial(Long id) {
-		this.id_historial = id_historial;
+	public void setIdHistorial(Long idHis) {
+		this.idHis = idHis;
 	}
 
 	public String getDescripcionHistorial() {

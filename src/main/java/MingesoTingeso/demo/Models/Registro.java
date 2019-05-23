@@ -23,21 +23,21 @@ public class Registro implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_registro")
-    private Long id_registro;
+    @Column(name = "idRegistro")
+    private Long idRegistro;
 
-    @Column(nullable = false, name = "representante")
+    @Column(nullable = false, name = "`representante`")
     private String representante;
 
-    @Column(nullable = false, name = "fecha_inicio")
-    private Date fecha_inicio;
+    @Column(nullable = false, name = "`fechaInicio`")
+    private Date fechaInicio;
 
-    @Column(nullable = false, name = "fecha_termino")
-    private Date fecha_termino;
+    @Column(nullable = false, name = "`fechaTermino`")
+    private Date fechaTermino;
 
     @ManyToOne(cascade = CascadeType.ALL,
 					fetch = FetchType.LAZY)
-		@JoinColumn(name = "id_habitacion")
+		@JoinColumn(name = "idHab")
 		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 		private Habitacion habitacion;
 
@@ -51,18 +51,18 @@ public class Registro implements Serializable {
 
     }
 
-    public Registro(String representante, Date fecha_inicio,  Date fecha_termino) {
+    public Registro(String representante, Date fechaInicio,  Date fechaTermino) {
         this.representante = representante;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_termino = fecha_termino;
+        this.fechaInicio = fechaInicio;
+        this.fechaTermino = fechaTermino;
     }
 
 	public Long getIdRegistro() {
-		return id_registro;
+		return idRegistro;
 	}
 
-	public void setIdRegistro(Long id_registro) {
-		this.id_registro = id_registro;
+	public void setIdRegistro(Long idRegistro) {
+		this.idRegistro = idRegistro;
 	}
 
 	public String getRepresentante() {
@@ -74,20 +74,20 @@ public class Registro implements Serializable {
 	}
 
 	public Date getFechaInicio(){
-		return fecha_inicio;
+		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date fecha_inicio) {
-		this.fecha_inicio = fecha_inicio;
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
 
 	public Date getFechaTermino(){
-		return fecha_termino;
+		return fechaTermino;
 	}
 
-	public void setFechaTermino(Date fecha_termino) {
-		this.fecha_termino = fecha_termino;
+	public void setFechaTermino(Date fechaTermino) {
+		this.fechaTermino = fechaTermino;
 	}
 
 }

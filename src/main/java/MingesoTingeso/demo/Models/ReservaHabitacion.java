@@ -22,24 +22,25 @@ import java.util.*;
 public class ReservaHabitacion implements Serializable {
 
   @Id
-    @Column(nullable = false, name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "fecha_inicio")
-    private Date fecha_inicio;
+    @Column(nullable = false, name = "`fechaInicio`")
+    private Date fechaInicio;
 
-    @Column(nullable = false, name = "fecha_termino")
-    private Date fecha_termino;
+    @Column(nullable = false, name = "`fechaTermino`")
+    private Date fechaTermino;
 
     @ManyToOne(cascade = CascadeType.ALL,
           fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_reserva")
+    @JoinColumn(name = "idReserva")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Reserva reserva;
 
     @ManyToOne(cascade = CascadeType.ALL,
           fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_habitacion")
+    @JoinColumn(name = "idHab")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Habitacion habitacion;
 
@@ -47,25 +48,34 @@ public class ReservaHabitacion implements Serializable {
 
     }
 
-    public ReservaHabitacion(Date fecha_inicio, Date fecha_termino) {
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_termino = fecha_termino;
+    public ReservaHabitacion(Date fechaInicio, Date fechaTermino) {
+        this.fechaInicio = fechaInicio;
+        this.fechaTermino = fechaTermino;
     }
+
+
+    	public Long getIdRH() {
+    		return id;
+    	}
+
+    	public void setIdRH(Long id) {
+    		this.id= id;
+    	}
 
     public Date getFechaInicioRH() {
-      return fecha_inicio;
+      return fechaInicio;
     }
 
-    public void setFechaInicioRH(Date fecha_inicio) {
-      this.fecha_inicio = fecha_inicio;
+    public void setFechaInicioRH(Date fechaInicio) {
+      this.fechaInicio = fechaInicio;
     }
 
     public Date getFechaTerminoRH() {
-      return fecha_termino;
+      return fechaTermino;
     }
 
-    public void setFechaTerminoRH(Date fecha_termino) {
-      this.fecha_termino = fecha_termino;
+    public void setFechaTerminoRH(Date fechaTermino) {
+      this.fechaTermino = fechaTermino;
     }
 
 

@@ -20,29 +20,29 @@ import java.util.*;
 @Table(name="reserva")
 public class Reserva implements Serializable {
 
-	@Id
+		@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reserva")
-    private Long id_reserva;
+    @Column(name = "idReserva")
+    private Long idReserva;
 
-    @Column(nullable = false, name = "estado")
+    @Column(nullable = false, name = "`estado`")
     private String estado;
 
 		@ManyToOne(cascade = CascadeType.ALL,
 					fetch = FetchType.LAZY)
-		@JoinColumn(name = "rut")
+		@JoinColumn(name = "idCliente")
 		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 		private Cliente cliente;
 
 		@ManyToOne(cascade = CascadeType.ALL,
 					fetch = FetchType.LAZY)
-		@JoinColumn(name = "id_usuario")
+		@JoinColumn(name = "idUser")
 		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 		private Usuario usuario;
 
 
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-		@JoinColumn(name = "id_reserva")
+		@JoinColumn(name = "idReserva")
 		@JsonIgnore
 		private List<ReservaHabitacion> reservahabitaciones;
 
@@ -57,11 +57,11 @@ public class Reserva implements Serializable {
     }
 
 	public Long getIdReserva() {
-		return id_reserva;
+		return idReserva;
 	}
 
-	public void setIdReserva(Long id_reserva) {
-		this.id_reserva = id_reserva;
+	public void setIdReserva(Long idReserva) {
+		this.idReserva= idReserva;
 	}
 
 	public String getEstado() {

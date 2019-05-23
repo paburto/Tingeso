@@ -23,25 +23,25 @@ public class Usuario implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long id_usuario;
+    @Column(name = "idUser")
+    private Long idUser;
 
-    @Column(nullable = false, name = "nombre_usuario")
-    private String nombre_usuario;
+    @Column(nullable = false, name = "nombreUsuario")
+    private String nombreUsuario;
 
-    @Column(nullable = false, name = "rol_usuario")
-    private String rol_usuario;
+    @Column(nullable = false, name = "rolUsuario")
+    private String rolUsuario;
 
-    @Column(nullable = false, name = "correo_usuario")
-    private String correo_usuario;
+    @Column(nullable = false, name = "correoUsuario")
+    private String correoUsuario;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "idUser")
     @JsonIgnore
     private List<Historial> historiales;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "idUser")
     @JsonIgnore
     private List<Reserva> reservas;
 
@@ -50,41 +50,41 @@ public class Usuario implements Serializable {
 
     }
 
-    public Usuario(String nombre_usuario, String rol_usuario, String correo_usuario) {
-        this.nombre_usuario = nombre_usuario;
-        this.rol_usuario = rol_usuario;
-        this.correo_usuario = correo_usuario;
+    public Usuario(String nombreUsuario, String rolUsuario, String correoUsuario) {
+        this.nombreUsuario = nombreUsuario;
+        this.rolUsuario = rolUsuario;
+        this.correoUsuario = correoUsuario;
     }
 
 	public Long getIdUsuario() {
-		return id_usuario;
+		return idUser;
 	}
 
-	public void setIdUsuario(Long id) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(Long idUser) {
+		this.idUser= idUser;
 	}
 
 	public String getNombreUsuario() {
-		return nombre_usuario;
+		return nombreUsuario;
 	}
 
-	public void setNombreUsuario(String nombre_usuario) {
-		this.nombre_usuario = nombre_usuario;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getRolUsuario() {
-		return rol_usuario;
+		return rolUsuario;
 	}
 
-	public void setRolUsuario(String rol_usuario) {
-		this.rol_usuario = rol_usuario;
+	public void setRolUsuario(String rolUsuario) {
+		this.rolUsuario = rolUsuario;
 	}
 
   public String getCorreoUsuario(){
-    return correo_usuario;
+    return correoUsuario;
   }
 
-  public void setCorreoUsuario(String correo_usuario){
-    this.correo_usuario = correo_usuario;
+  public void setCorreoUsuario(String correoUsuario){
+    this.correoUsuario = correoUsuario;
   }
 }

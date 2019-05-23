@@ -23,17 +23,17 @@ public class Servicio implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_servicio")
-    private Long id_servicio;
+    @Column(name = "idServicio")
+    private Long idServicio;
 
-    @Column(nullable = false, name = "descripcion")
+    @Column(nullable = false, name = "`descripcion`")
     private String descripcion;
 
-    @Column(nullable = false, name = "nombre_servicio")
-    private String nombre_servicio;
+    @Column(nullable = false, name = "`nombreServicio`")
+    private String nombreServicio;
 
-    @Column(nullable = false, name = "precio_servicio")
-    private int precio_servicio;
+    @Column(nullable = false, name = "`precioServicio`")
+    private int precioServicio;
 
     @ManyToMany
     private Set<Registro> registros;
@@ -42,18 +42,18 @@ public class Servicio implements Serializable {
 
     }
 
-    public Servicio(String descripcion, String nombre_servicio, int precio_servicio) {
+    public Servicio(String descripcion, String nombreServicio, int precioServicio) {
         this.descripcion = descripcion;
-        this.nombre_servicio = nombre_servicio;
-        this.precio_servicio= precio_servicio;
+        this.nombreServicio = nombreServicio;
+        this.precioServicio= precioServicio;
     }
 
 	public Long getIdServicio() {
-		return id_servicio;
+		return idServicio;
 	}
 
-	public void setIdServicio(Long id) {
-		this.id_servicio= id_servicio;
+	public void setIdServicio(Long idServicio) {
+		this.idServicio= idServicio;
 	}
 
 	public String getDescripcionServicio() {
@@ -65,19 +65,19 @@ public class Servicio implements Serializable {
 	}
 
 	public String getNombreServicio() {
-		return nombre_servicio;
+		return nombreServicio;
 	}
 
-	public void setNombreServicio(String nombre_servicio) {
-		this.nombre_servicio = nombre_servicio;
+	public void setNombreServicio(String nombreServicio) {
+		this.nombreServicio = nombreServicio;
 	}
 
 	public int getPrecio() {
-		return precio_servicio;
+		return precioServicio;
 	}
 
-	public void setPrecio(int precio_servicio) {
-		this.precio_servicio = precio_servicio;
+	public void setPrecio(int precioServicio) {
+		this.precioServicio = precioServicio;
 	}
 
 }

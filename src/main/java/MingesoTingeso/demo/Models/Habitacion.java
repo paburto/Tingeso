@@ -23,28 +23,28 @@ public class Habitacion implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_habitacion")
-    private Long id_habitacion;
+    @Column(name = "idHab")
+    private Long idHab;
 
-    @Column(nullable = false, name = "tipo")
+    @Column(nullable = false, name = "`tipo`")
     private String tipo;
 
-    @Column(nullable = false, name = "capacidad_ninos")
-    private int capacidad_ninos;
+    @Column(nullable = false, name = "`capacidadNinos`")
+    private int capacidadNinos;
 
-    @Column(nullable = false, name = "capacidad_adultos")
-    private int capacidad_adultos;
+    @Column(nullable = false, name = "`capacidadAdultos`")
+    private int capacidadAdultos;
 
-    @Column(nullable = false, name = "precio_noche")
-    private int precio_noche;
+    @Column(nullable = false, name = "`precioNoche`")
+    private int precioNoche;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_habitacion")
+    @JoinColumn(name = "idHab")
     @JsonIgnore
     private List<Registro> registros;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_habitacion")
+    @JoinColumn(name = "idHab")
     @JsonIgnore
     private List<ReservaHabitacion> reservahabitaciones;
 
@@ -53,19 +53,19 @@ public class Habitacion implements Serializable {
 
     }
 
-    public Habitacion(String tipo, int capacidad_ninos,int capacidad_adultos, int precio_noche) {
+    public Habitacion(String tipo, int capacidadNinos,int capacidadAdultos, int precioNoche) {
         this.tipo = tipo;
-        this.capacidad_ninos = capacidad_ninos;
-        this.capacidad_adultos = capacidad_adultos;
-        this.precio_noche = precio_noche;
+        this.capacidadNinos = capacidadNinos;
+        this.capacidadAdultos = capacidadAdultos;
+        this.precioNoche = precioNoche;
     }
 
 	public Long getIdHabitacion() {
-		return id_habitacion;
+		return idHab;
 	}
 
-	public void setIdHabitacion(Long id_habitacion) {
-		this.id_habitacion= id_habitacion;
+	public void setIdHabitacion(Long idHab) {
+		this.idHab= idHab;
 	}
 
 	public String getTipoHabitacion() {
@@ -77,25 +77,25 @@ public class Habitacion implements Serializable {
 	}
 
 	public int getCapacidadNinos() {
-		return capacidad_ninos;
+		return capacidadNinos;
 	}
 
-	public void setCapacidadNinos(int capacidad_ninos) {
-		this.capacidad_ninos = capacidad_ninos;
+	public void setCapacidadNinos(int capacidadNinos) {
+		this.capacidadNinos = capacidadNinos;
 	}
 
 	public int getCapacidadAdultos() {
-		return capacidad_adultos;
+		return capacidadAdultos;
 	}
 
-	public void setCapacidadAdultos(int capacidad_adultos) {
-		this.capacidad_adultos = capacidad_adultos;
+	public void setCapacidadAdultos(int capacidadAdultos) {
+		this.capacidadAdultos = capacidadAdultos;
 	}
   public int getPrecioNoche() {
-    return precio_noche;
+    return precioNoche;
   }
 
-  public void setPrecioNoche(int precio_noche) {
-    this.precio_noche = precio_noche;
+  public void setPrecioNoche(int precioNoche) {
+    this.precioNoche = precioNoche;
   }
 }
