@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-carousel": "^0.1.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "b-sidebar": "^1.2.1",
     "bootstrap": "^4.1.3",
     "bvue-sidebar": "^0.2.0",
